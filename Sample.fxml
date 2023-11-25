@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.SampleController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.honorsProjectFall2023.SampleController">
    <children>
       <Pane fx:id="showerHistoryPane" layoutY="-1.0" prefHeight="400.0" prefWidth="600.0" visible="false">
          <children>
@@ -39,7 +39,6 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text fill="#00971c" layoutX="256.0" layoutY="349.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Shower Saved!" textAlignment="CENTER" wrappingWidth="88.03125" />
          </children>
       </Pane>
    </children>

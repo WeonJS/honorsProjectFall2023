@@ -1,4 +1,4 @@
-package application;
+package application.honorsProjectFall2023;
 
 import java.io.File;
 import java.io.FileReader;

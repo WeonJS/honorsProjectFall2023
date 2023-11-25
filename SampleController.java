@@ -1,5 +1,4 @@
-package application;
-
+package application.honorsProjectFall2023;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Timer;
@@ -196,9 +195,9 @@ public class SampleController {
 		ArrayList<ShowerLogEntry> showers = ShowerLogger.getInstance().getShowers();
 		
 		// find max shower duration
-		int max = -1;
+		float max = -1;
 		for (ShowerLogEntry s : showers) {
-			int dur = s.getDuration();
+			float dur = s.getGallonsUsed();
 			if (dur > max) {
 				max = dur;
 			}
@@ -209,15 +208,42 @@ public class SampleController {
 		double yAxisHeight = height - 2 * graphMargin;
 		showerPoints.clear();
 		int showerCount = showers.size();
+		float xAvg = 0;
+		float yAvg = 0;
+		ArrayList<Double> xPoints = new ArrayList<>();
+		ArrayList<Double> yPoints = new ArrayList<>();
 		for (int i = 0; i < showers.size(); i++) {
 			ShowerLogEntry shower = showers.get(i);
 			double pointX = ((float)i / (float)showerCount) * xAxisWidth + graphMargin;
 			double pointY = (height - graphMargin) - shower.getGallonsUsed() / max * yAxisHeight;
+			
+			xPoints.add(pointX);
+			yPoints.add(pointY);
+			
+			xAvg += pointX;
+			yAvg += pointY;
+			
 			showerPoints.add(new ShowerPoint(pointX, pointY, shower));
 			gc.beginPath();
 			gc.fillArc(pointX, pointY, POINT_RADIUS, POINT_RADIUS, 0, 360, ArcType.ROUND);
 			gc.closePath();
 		}
+		float numeratorSum = 0;
+		float denominatorSum = 0;
+		
+		
+		// calculate slope of line
+		for (int i = 0; i < showerCount; i++) {
+			numeratorSum += (xPoints.get(i) - xAvg)*(yPoints.get(i) - yAvg);
+			denominatorSum += (xPoints.get(i) - xAvg) * (xPoints.get(i) - xAvg);
+		}
+		
+		float m = numeratorSum / denominatorSum;
+		
+		// calculate intercept
+		float b = yAvg - m * xAvg;
+		
+		gc.strokeLine(0, b, width, m * width + b);
 		
 		if (selectedPoint != null) {
 			gc.setStroke(Color.BLUE);
