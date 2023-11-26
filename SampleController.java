@@ -233,6 +233,7 @@ public class SampleController {
 		
 		
 		// calculate slope of line
+		// implementation of equations from https://math.stackexchange.com/questions/204020/what-is-the-equation-used-to-calculate-a-linear-trendline
 		for (int i = 0; i < showerCount; i++) {
 			numeratorSum += (xPoints.get(i) - xAvg)*(yPoints.get(i) - yAvg);
 			denominatorSum += (xPoints.get(i) - xAvg) * (xPoints.get(i) - xAvg);
